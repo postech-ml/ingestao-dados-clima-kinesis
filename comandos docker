@@ -1,2 +1,6 @@
 sudo docker run -d --name localstack -e SERVICES=apigateway,cloudformation,cloudwatch,dynamodb,ec2,es,firehose,iam,kinesis,lambda,logs,monitoring,redshift,s3,sqs,sns,secretsmanager,stepfunctions,sts,events,route53,elasticache,elasticbeanstalk,emr,eks,fsx,glue,importexport,iot,mediastore,mediaconnect,neptune,opsworks,rds,sagemaker,sfn,ssm,transcribe,translate -e DEFAULT_REGION=us-east-1 -p 4566:4566 -p 4510-4559:4510-4559 -v ~/workspaces/ingestao-dados-clima-kinesis/localstack_data:/tmp/localstack localstack/localstack
 DATA_DIR=/workspaces/ingestao-dados-clima-kinesis/localstack_data localstack start -d
+
+aws --endpoint-url=http://localhost:4566 --no-sign-request lambda create-function --function-name lambda-ingestao-kinesis --runtime python3.8 --role arn:aws:iam::123456789012:role/lambda_role --handler lambda_function.lambda_handler --zip-file fileb://../lambda-function.zip
+
+aws --endpoint-url=http://localhost:4566 --region us-east-1 --no-sign-request lambda create-function --function-name lambda-ingestao-kinesis --runtime python3.8 --role arn:aws:iam::123456789012:role/lambda_role --handler lambda_function.lambda_handler --zip-file fileb://lambda-ingestao-kinesis.zip
