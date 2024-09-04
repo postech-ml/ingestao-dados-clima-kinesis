@@ -69,7 +69,7 @@ from datetime import datetime, timedelta
 # Configurações
 API_KEY = '98196fde09d81a5ecbf33ef899764f8c'
 BASE_URL = 'http://pro.openweathermap.org/data/2.5/weather'
-KINESIS_STREAM_NAME = 'meu-primeiro-stream'
+KINESIS_STREAM_NAME = 'dados-clima-kinesis'
 REGION_NAME = 'us-east-1'  # Substitua pela sua região desejada
 
 # Inicializar cliente Kinesis
