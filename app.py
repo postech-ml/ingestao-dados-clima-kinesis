@@ -85,7 +85,7 @@ def load_capitals(filename='capitals.json'):
     return data['capitals']
 
 def get_weather_data(city, country):
-    url = f"{BASE_URL}?q={city},{country}&APPID={API_KEY}"
+    url = f"{BASE_URL}?q={city},{country}&APPID={API_KEY}&lang=pt_br&units=metric"
     response = requests.get(url)
     if response.status_code == 200:
         return response.json()
